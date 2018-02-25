@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue学习</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="keyword">
+		<br>
+		搜索结果：{{result}}
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		watch:{
+			keyword:_.debounce((newValue,oldValue)=> {
+				var _this = this;
+				axios.get('http://127.0.0.1/1.php?keyword='+newValue).then((response)=>{
+					this.result = response.data;
+				});
+			},500)
+		},
+		data:{
+			name:'hangsan,页面加载时间' + new Date().getTime(),
+			keyword:'',
+			result:''
+		}
+	})
+</script>
+</html>
