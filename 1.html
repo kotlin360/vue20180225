@@ -5,16 +5,30 @@
 	<title>Vue学习</title>
 	<script type="text/javascript" src="./js/vue.js"></script>
 </head>
+<style>
+	.red1{color:red}
+	.green{color:green}
+	.red2{color:green}
+</style>
 <body>
 	<div id="app">
-		{{ name }}
+		<h1 :class="'red'+n">{{ name }}</h1>
+		<h1 v-html="name"></h1>
+		{{n}}
+		{{n+100}}
+		<input type="text" v-model="n">
+		<label><input type="radio" v-model.trim.number="n" value="1" checked="checked">红色</label>
+		<label><input type="radio" v-model.trim.number="n" value="2">绿色</label>
 	</div>
 </body>
 <script type="text/javascript">
 	const app = new Vue({
 		el:'#app',
 		data:{
-			name:'zhangsan1111,页面加载时间：' + new Date().getTime(),
+			name:'hangsan,页面加载时间' + new Date().getTime(),
+			red:'red',
+			red1:'red2',
+			n:1
 		}
 	})
 </script>

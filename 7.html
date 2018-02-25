@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue学习</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+</head>
+<body>
+	<div id="app">
+		{{sum}}
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		computed:{
+			sum(){
+				return this.n1 + this.n2;
+			}
+		},
+		data:{
+			name:'hangsan,页面加载时间' + new Date().getTime(),
+			n1:100,
+			n2:200
+		}
+	})
+</script>
+</html>
