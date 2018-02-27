@@ -21,6 +21,12 @@
 					{{++k}}---姓名：{{v.name}}，年龄：{{v.age}}，爱好：{{v.hobby}}
 				</li>
 			</ul>
+			<br>
+			<ul class="list-group">
+				<li class="list-group-item" v-for="(v,k,index) in object" :key="index">
+					{{index}}----{{k}}----{{v}}
+				</li>
+			</ul>
 		</div>
 	</div>
 </body>
@@ -31,10 +37,19 @@
 			loginType:'username',
 			name:'张三'+new Date().getTime(),
 			users:[
-				{name:'原岩刚',age:28,hobby:'美女'},
+				{name:'原岩刚',age:28,hobby:'美女'+new Date().getTime()},
 				{name:'薛恒伟',age:23,hobby:'SRM'},
-				{name:'徐帆',age:28,hobby:'GAY'}
-			]
+				{name:'薛恒伟',age:23,hobby:'SRM'},
+				{name:'徐帆',age:28,hobby:'GAY'},
+				{name:'徐帆',age:28,hobby:'GAY'},
+				{name:'张萨那',age:32,hobby:'编程1'},
+				{name:'张萨那',age:32,hobby:'编程2'},
+			],
+			object: {
+				firstName: 'John',
+				lastName: 'Doe',
+				age: 30
+			}
 		},
 		methods:{
 			changeLoginType:function(){
