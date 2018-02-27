@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
 	<script type="text/javascript" src="./js/vue.js"></script>
 	<script type="text/javascript" src="./js/axios.min.js"></script>
 	<script type="text/javascript" src="./js/lodash.min.js"></script>
@@ -14,16 +15,32 @@
 </style>
 <body>
 	<div id="app">
-		<h2 :style="{color:color,fontSize:size+'px'}">{{name}}</h2>
+		<div class="col-6">
+			<ul class="list-group">
+				<li class="list-group-item" v-for="(v,k) in users">
+					{{++k}}---姓名：{{v.name}}，年龄：{{v.age}}，爱好：{{v.hobby}}
+				</li>
+			</ul>
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
 	const app = new Vue({
 		el:'#app',
 		data:{
-			color:'pink',
-			size:30,
+			loginType:'username',
 			name:'张三'+new Date().getTime(),
+			users:[
+				{name:'原岩刚',age:28,hobby:'美女'},
+				{name:'薛恒伟',age:23,hobby:'SRM'},
+				{name:'徐帆',age:28,hobby:'GAY'}
+			]
+		},
+		methods:{
+			changeLoginType:function(){
+				console.log(this);
+				this.loginType = this.loginType === 'username' ? 'email' : 'username';
+			}
 		}
 	})
 </script>
