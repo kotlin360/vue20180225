@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<style>
+	.green{color:green}
+	.color{color:red}
+	.font{font-size:100px}
+</style>
+<body>
+	<div id="app">
+		<h1>13变更</h1>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		data:{
+			loginType:'username',
+			name:'张三'+new Date().getTime(),
+			users:[
+				{name:'原岩刚',age:28,hobby:'美女'+new Date().getTime()},
+				{name:'薛恒伟',age:23,hobby:'SRM'},
+				{name:'薛恒伟',age:23,hobby:'SRM'},
+				{name:'徐帆',age:28,hobby:'GAY'},
+				{name:'徐帆',age:28,hobby:'GAY'},
+				{name:'张萨那',age:32,hobby:'编程1'},
+				{name:'张萨那',age:32,hobby:'编程2'},
+			],
+			object: {
+				firstName: 'John',
+				lastName: 'Doe',
+				age: 30
+			}
+		},
+		methods:{
+			changeLoginType:function(){
+				console.log(this);
+				this.loginType = this.loginType === 'username' ? 'email' : 'username';
+			}
+		}
+	})
+</script>
+</html>
