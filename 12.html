@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue学习</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<style>
+	.green{color:green}
+	.color{color:red}
+	.font{font-size:100px}
+</style>
+<body>
+	<div id="app">
+		<h2 :style="{color:color,fontSize:size+'px'}">{{name}}</h2>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		data:{
+			color:'pink',
+			size:30,
+			name:'张三'+new Date().getTime(),
+		}
+	})
+</script>
+</html>

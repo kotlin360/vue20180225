@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Vue学习</title>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<style>
+	.green{color:green}
+	.color{color:red}
+	.font{font-size:100px}
+</style>
+<body>
+	<div id="app">
+		<h1 :class="{color:true,font:true}" class="green" >{{name}}</h1>
+		<h1 :class="[color,font]">class使用数组指定样式</h1>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		data:{
+			color:'color',
+			font:'font',
+			name:'hangsan,页面加载时间' + new Date().getTime(),
+		}
+	})
+</script>
+</html>
