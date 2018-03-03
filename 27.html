@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="card">
+			<div class="card-header">
+				26 向军老师Vue开发宝典-事件修饰符之使用$event与prevent修复符操作表单
+			</div>
+			<div class="card-body" @click.stop="parent()">
+				<a href="http://www.baidu.com" @click.prevent.stop="jump()">跳转到百度</a>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		data:{
+			time:new Date().getTime()
+		},
+		methods:{
+			jump(){
+				alert('this is aaa');
+			},
+			parent() {
+				alert('this is parent');
+			}
+		}
+	})
+</script>
+</html>

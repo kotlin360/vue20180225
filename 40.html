@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css"/>
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<body>
+<div id="app">
+	<div class="card">
+		<div class="card-header">
+			40 向军老师Vue开发宝典-组件之组件间的数据参props的使用实例操作
+		</div>
+		<div class="card-body">
+			<slide name="zhangsan" :time="time" flag="false" :lists="news"></slide>
+		</div>
+	</div>
+</div>
+</body>
+<script type="text/x-template" id="slide">
+	<ul class="list-group">
+		{{name}} -- {{time}} -- {{flag}}
+		<li class="list-group-item" v-for="(v,k) in lists">
+			{{k+1}}、{{v.title}}
+			<button type="button" class="btn btn-danger btn-sm" @click="del(k)" v-if="flag">删除</button>
+		</li>
+	</ul>
+</script>
+<script type="text/javascript">
+	// 2.组件的局部注册
+	let slide = {
+		template: '#slide',
+		props: ['name', 'time', 'flag', 'lists'],
+		data() {
+			return {};
+		},
+		methods: {
+			del(k) {
+				this.lists.splice(k, 1);
+			}
+		}
+	};
+	const app = new Vue({
+		el: '#app',
+		data: {
+			time: new Date().getTime(),
+			news: [
+				{title: '习近平等出席全国政协十三届一次会议'},
+				{title: '推动高质量发展，保持经济持续健康'},
+				{title: '王国庆：政协章程修改遵循总体稳定原则'},
+				{title: '代表委员通道，见证新时代开放气质'},
+			]
+		},
+		components: {
+			slide
+		}
+	})
+</script>
+</html>

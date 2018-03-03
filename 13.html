@@ -15,36 +15,45 @@
 </style>
 <body>
 	<div id="app">
-		<h1>修改后的13变更BUG</h1>
-		<h1>这里是新功能</h1>
+		<div class="col-6">
+			<ul class="list-group">
+				<li class="list-group-item" v-for="(v,index) in students">
+					{{v.name}}---{{v.gender}}
+				</li>
+			</ul>
+			{{cate}}
+			<input type="radio" v-model="cate" value="all">全部
+			<input type="radio" v-model="cate" value="boy">男
+			<input type="radio" v-model="cate" value="girl">女
+		</div>
 	</div>
 </body>
 <script type="text/javascript">
 	const app = new Vue({
 		el:'#app',
-		data:{
-			loginType:'username',
-			name:'张三'+new Date().getTime(),
-			users:[
-				{name:'原岩刚',age:28,hobby:'美女'+new Date().getTime()},
-				{name:'薛恒伟',age:23,hobby:'SRM'},
-				{name:'薛恒伟',age:23,hobby:'SRM'},
-				{name:'徐帆',age:28,hobby:'GAY'},
-				{name:'徐帆',age:28,hobby:'GAY'},
-				{name:'张萨那',age:32,hobby:'编程1'},
-				{name:'张萨那',age:32,hobby:'编程2'},
-			],
-			object: {
-				firstName: 'John',
-				lastName: 'Doe',
-				age: 30
+		computed:{
+			students(){
+				if(this.cate == 'all') {
+					return this.users;
+				} else {
+					return this.users.filter((v)=>{
+						return v.gender == this.cate;
+					})
+				}
 			}
 		},
+		data:{
+			cate:'all',
+			users:[
+				{name:'张三',gender:'boy'},
+				{name:'赵丽颖',gender:'girl'},
+				{name:'曹颖',gender:'girl'},
+				{name:'李三风',gender:'boy'},
+				{name:'刘诗诗',gender:'girl'},
+			]
+		},
 		methods:{
-			changeLoginType:function(){
-				console.log(this);
-				this.loginType = this.loginType === 'username' ? 'email' : 'username';
-			}
+
 		}
 	})
 </script>

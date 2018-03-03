@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="container-fluid">
+			<div class="col-6">
+				<ul class="list-group" v-if="comments.length > 0">
+					<li class="list-group-item" v-for="(v,index) in comments">
+						{{v.id}}--{{v.content}}
+						<button @click="del(index)" type="button" class="btn btn-outline-warning btn-sm">删除</button>
+					</li>
+				</ul>
+				<div class="alert alert-primary" role="alert" v-else>
+					目前没有任何评论，请新增评论！
+				</div>
+			</div>
+			<br>
+			<div class="col-6">
+				<textarea class="form-control" v-model.trim="content" rows="3"></textarea>
+				<br>
+				<button type="button" @click="add('first')" class="btn btn-success">发表到前面</button>
+				<button type="button" @click="add('last')" class="btn btn-success">发表到最后</button>
+				<button type="button" @click.stop="remove('first')" class="btn btn-danger">删除前面</button>
+				<button type="button" @click="remove('last')" class="btn btn-danger">删除后面</button>
+				<button type="button" @click="sort()" class="btn btn-warning">排序</button>
+				<button type="button" @click="reverse()" class="btn btn-warning">反转</button>
+				<br>
+				<br>
+				<div class="col-6">
+					<input type="text" v-model.trim="search_content" class="form-control" placeholder="请输入搜索内容">
+					<button type="submit" v-on:keyup.13="search" class="btn btn-primary">搜索</button>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		data:{
+			search_content:'',
+			content:'',
+			comments:[
+				{id:5,content:'中国共产党中央委员会关于修改宪法部分内容的建议'},
+				{id:2,content:'将习近平中国特色社会主义思想载入宪法的重大意义'},
+				{id:4,content:'电影《厉害了，我的国》3月2日震撼献映！ 暖新闻'},
+				{id:3,content:'新时代新气象  新春走基层  习近平视察北京四周年'},
+				{id:1,content:'阿里口碑整合饿了么，足以与美团对抗吗？'},
+			]
+		},
+		methods:{
+			search(){
+				if(this.search_content === '') {
+					alert('请输入搜索内容');
+					return;
+				}
+				this.comments =  this.comments.filter((item)=>{
+					let reg = new RegExp(this.search_content,'i');
+					return reg.test(item.content);
+				})
+			},
+			add(type){
+				let _content = this.content;
+				let nextId = this.comments.length + 1;
+				if (_content.length === 0 || _content === '') {
+					alert('请输入评论内容');
+					return;
+				}
+				if(type === 'first') {
+					this.comments.unshift({id:nextId,content:_content});
+				} else {
+					this.comments.push({id:nextId,content:_content});
+				}
+				this.content = '';
+			},
+			remove(type){
+				if(type === 'first') {
+					this.comments.shift();
+				} else {
+					this.comments.pop();
+				}
+			},
+			del(index){
+				this.comments.splice(index,1);
+			},
+			sort() {
+				this.comments.sort((a,b)=>{
+					return a.id > b.id;
+				})
+			},
+			reverse(){
+				this.comments.reverse();
+			}
+		}
+	})
+</script>
+</html>

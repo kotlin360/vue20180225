@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="card">
+			<div class="card-header">
+				26 向军老师Vue开发宝典-事件修饰符之使用$event与prevent修复符操作表单
+			</div>
+			<div class="card-body">
+				<div class="alert alert-primary" role="alert" v-text="time"></div>
+				<form action="" @submit.prevent="post('100',$event)">
+					<button type="submit" class="btn btn-primary">提交</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	const app = new Vue({
+		el:'#app',
+		data:{
+			time:new Date().getTime()
+		},
+		methods:{
+			post(id,event){
+				console.log(id);
+				console.log(event)
+			}
+		}
+	})
+</script>
+</html>

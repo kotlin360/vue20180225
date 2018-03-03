@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Vue学习</title>
+	<link type="text/css" rel="stylesheet" href="./css/bootstrap.min.css" />
+	<script type="text/javascript" src="./js/vue.js"></script>
+	<script type="text/javascript" src="./js/jquery.min.js"></script>
+	<script type="text/javascript" src="./js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="./js/axios.min.js"></script>
+	<script type="text/javascript" src="./js/lodash.min.js"></script>
+</head>
+<body>
+	<div id="app">
+		<div class="card">
+			<div class="card-header">
+				38 向军老师Vue开发宝典-组件之WEB开发中组件使用场景与定义组件的方式
+			</div>
+			<div class="card-body">
+				<slide></slide>
+				<slide></slide>
+				<hr>
+				<slide2></slide2>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/x-template" id="slide">
+	<div class="alert alert-danger" role="alert">
+		<strong>这里是全局幻灯片</strong>
+	</div>
+</script>
+<script type="text/x-template" id="slide2">
+	<div class="alert alert-success" role="alert">
+		<strong>这里是局部幻灯片</strong>
+	</div>
+</script>
+<script type="text/javascript">
+	// 1.组件的全局注册
+	Vue.component('slide',{
+		template:'#slide',
+	});
+	// 2.组件的局部注册
+	let slide2 = {
+		template:'#slide2',
+	};
+	const app = new Vue({
+		el:'#app',
+		data:{
+			time:new Date().getTime(),
+		},
+		components:{
+			slide2
+		}
+	})
+</script>
+</html>
